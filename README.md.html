@@ -1,0 +1,76 @@
+<h1>getchlib - library for reading key presses</h1>
+
+<h2>Overview</h2>
+
+<p><code>getchlib</code> is library for reading key presses and assigning hotkeys.</p>
+
+<h3>Features</h3>
+
+<ol>
+<li>Full Unicode support</li>
+<li>Blocking and non-blocking key press reading</li>
+<li>Cross-platform support</li>
+<li>Basic hotkeys ( <code>CTRL-V</code> or <code>ALT-A</code> ) are defined</li>
+<li>Not interruptable key press reading support ( cannot be interrupted by <code>CTRL-C</code>, returns key code instead )</li>
+</ol>
+
+
+<h3>Installation</h3>
+
+<p><code>
+pip install getchlib
+</code></p>
+
+<h2>Usage</h2>
+
+<h3>Key Presses</h3>
+
+<h4>Blocking</h4>
+
+<p><code>python
+import getchlib
+key=getchlib.getkey()
+</code>
+Waits until user presses a key.</p>
+
+<h4>Non-Blocking</h4>
+
+<p><code>python
+import getchlib
+key=getchlib.getkey(False)
+</code>
+Returns first key pressed in time specified by its second argument <code>tout</code> ( 0.01 by default ).</p>
+
+<h4>Not interruptable</h4>
+
+<p><code>python
+import getchlib
+key=getchlib.getkey(catch=True)
+</code></p>
+
+<h3>Hotkeys</h3>
+
+<p><code>python
+import getchlib
+def function():
+    print('hello')
+f=getchlib.HotKeyListener()
+f.add_hotkey('ctrl-x',function)
+f.start()
+</code>
+<strong><em>NOTE</em></strong>:<em>f.start() runs on foreground</em></p>
+
+<h4>Not interruptable</h4>
+
+<p><code>python
+import getchlib
+def function():
+    print('hello')
+f=getchlib.HotKeyListener(catch=True)
+f.add_hotkey('a',function)
+f.start()
+</code></p>
+
+<h2>License</h2>
+
+<p><em><code>getchlib</code> is licensed under</em> <strong><em>GPL License</em></strong></p>

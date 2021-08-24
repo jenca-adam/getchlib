@@ -1,0 +1,75 @@
+Metadata-Version: 2.1
+Name: getchlib
+Version: 1.0.2
+Summary: Library for reading key presses
+Home-page: https://pypi.org/project/getchlib/
+Author: Adam Jenca
+Author-email: jenca.a@gjh.sk
+License: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Description-Content-Type: text/markdown
+
+
+# getchlib - library for reading key presses
+
+## Overview
+`getchlib` is library for reading key presses and assigning hotkeys.
+### Features
+1. Full Unicode support
+1. Blocking and non-blocking key press reading
+1. Cross-platform support
+1. Basic hotkeys ( `CTRL-V` or `ALT-A` ) are defined
+1. Not interruptable key press reading support ( cannot be interrupted by `CTRL-C`, returns key code instead )
+
+### Installation
+```
+pip install getchlib
+```
+## Usage
+### Key Presses
+#### Blocking
+```python
+import getchlib
+key=getchlib.getkey()
+```
+Waits until user presses a key.
+#### Non-Blocking
+```python
+import getchlib
+key=getchlib.getkey(False)
+```
+Returns first key pressed in time specified by its second argument `tout` ( 0.01 by default ).
+#### Not interruptable 
+```python
+import getchlib
+key=getchlib.getkey(catch=True)
+```
+### Hotkeys
+```python
+import getchlib
+def function():
+	print('hello')
+f=getchlib.HotKeyListener()
+f.add_hotkey('ctrl-x',function)
+f.start()
+```
+***NOTE***:*f.start() runs on foreground*
+#### Not interruptable
+```python
+import getchlib
+def function():
+	print('hello')
+f=getchlib.HotKeyListener(catch=True)
+f.add_hotkey('a',function)
+f.start()
+```
+## License
+*`getchlib` is licensed under* ***GPL License***
+
+
