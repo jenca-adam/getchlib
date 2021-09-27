@@ -1,4 +1,5 @@
 ************
 getchlib
 ************
-**getchlib** is a library for reading key presses and assigning shortcuts
+**getchlib** is a library for reading key presses and assigning shortcuts.
+
