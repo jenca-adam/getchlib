@@ -22,7 +22,7 @@ class NoBufReader:
     def read(self,size):
         return self.file.read(size)
 
-def _getkey_nonblocking(tout=0.1,catch=False):
+def _getkey_nonblocking(tout=0.1,catch=False,echo=False):
     char=''
     buffer=buf(NoBufReader(sys.stdin),catch)
     e=False
@@ -47,7 +47,7 @@ def _getkey_nonblocking(tout=0.1,catch=False):
             
     return char
 
-def _getkey_blocking(tout=0.01,catch=False):
+def _getkey_blocking(tout=0.01,catch=False,echo=False):
     char=''
     buffer=buf(NoBufReader(sys.stdin),catch)
     entering=False
@@ -62,16 +62,22 @@ def _getkey_blocking(tout=0.01,catch=False):
     return char
             
 
-def _getkey(blocking=True,tout=0.1,catch=False):
+def _getkey(blocking=True,tout=0.1,catch=False,echo=False):
     if blocking:
         
-        return _getkey_blocking(tout,catch)
+        key= _getkey_blocking(tout,catch)
     else:
         
-        return _getkey_nonblocking(tout,catch)
-def getkey(blocking=True,tout=0.1,catch=False):
+        key = _getkey_nonblocking(tout,catch)
+   
+    if key.isprintable() and echo:
+        term.buffering.on()
+
+        print(key,end='',flush=True)
+    return key
+def getkey(blocking=True,tout=0.1,catch=False,echo=False):
     try:
-        return parse_key(_getkey(blocking,tout,catch))
+        return parse_key(_getkey(blocking,tout,catch,echo))
     except KeyboardInterrupt:
             if not catch:
                 raise

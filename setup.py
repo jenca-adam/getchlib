@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
                 name='getchlib',
-                version='1.0.2',
+                version='1.0.3',
                 description='Library for reading key presses',
                 long_description=
 '''
@@ -39,6 +39,12 @@ Returns first key pressed in time specified by its second argument `tout` ( 0.01
 ```python
 import getchlib
 key=getchlib.getkey(catch=True)
+```
+#### Echo argument (new in v1.0.3)
+With `echo=True` characters readed are echoed to the screen.
+```python
+key=getchlib.getkey(echo=True)
+
 ```
 ### Hotkeys
 ```python
