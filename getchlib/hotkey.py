@@ -1,4 +1,3 @@
-import threading 
 try:    
     from .getkey import getkey
 except ImportError:
@@ -18,13 +17,16 @@ try:
     from .ctrl import CTRLIN
 except ImportError:
     from ctrl import CTRLIN
+import os
 class HotKeyListener:
-    def __init__(self,catch=False):
+    def __init__(self,catch=False,blocking=True):
         self.hotkeys={}
         self.catch=catch
         self.__quit=False
-        self.blocking=True
-        self.__thread=threading.Thread(target=self.__blocking,args=(lambda:self.__quit,))
+        self.blocking=blocking
+        if not blocking:
+            if os.name!='posix':
+                raise SystemError('Non-blocking mode available only on Linux systems.')
     def __blocking(self,destroy):
         while not destroy():
             try:
@@ -50,16 +52,17 @@ class HotKeyListener:
             key=CTRLIN[key.upper()]
         self.hotkeys[key]=with_args(*args,**kwargs)(emit)
     def _start(self):
-        self.__thread.start()
+        self.__blocking(lambda:False) 
     def join(self,*a):
         self.__thread.join(*a)
     def terminate(self):
         self.__quit=True
     def start(self):
+        if not self.blocking:
+            if os.fork():
+                self._start()
         try:
             self._start()
-            if self.blocking:
-                self.join()
         finally:
             self.terminate()
             if term:

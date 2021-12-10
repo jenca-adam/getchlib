@@ -1,3 +1,4 @@
+LICENSE
 README.md
 setup.py
 getchlib/__init__.py
@@ -5,8 +6,8 @@ getchlib/ctrl.py
 getchlib/decorators.py
 getchlib/getkey.py
 getchlib/hotkey.py
-getchlib/keynames.py
 getchlib/pressed.py
+getchlib/printer.py
 getchlib/term.py
 getchlib/unix.py
 getchlib/windows.py
@@ -14,3 +15,5 @@ getchlib.egg-info/PKG-INFO
 getchlib.egg-info/SOURCES.txt
 getchlib.egg-info/dependency_links.txt
 getchlib.egg-info/top_level.txt
+getchlib/keynames/__init__.py
+getchlib/keynames/raw.py

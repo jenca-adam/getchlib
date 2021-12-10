@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
                 name='getchlib',
-                version='1.0.3',
+                version='1.0.9',
                 description='Library for reading key presses',
                 long_description=
 '''
@@ -16,7 +16,7 @@ setuptools.setup(
 1. Cross-platform support
 1. Basic hotkeys ( `CTRL-V` or `ALT-A` ) are defined
 1. Not interruptable key press reading support ( cannot be interrupted by `CTRL-C`, returns key code instead )
-
+1. Keys as arrow up, arrow left, arrow down, arrow right are defined (for full list, view getchlib.keynames.raw)
 ### Installation
 ```
 pip install getchlib
@@ -55,7 +55,6 @@ f=getchlib.HotKeyListener()
 f.add_hotkey('ctrl-x',function)
 f.start()
 ```
-***NOTE***:*f.start() runs on foreground*
 #### Not interruptable
 ```python
 import getchlib
@@ -70,7 +69,7 @@ f.start()
 ''',
         long_description_content_type='text/markdown',
         author='Adam Jenca',
-        packages=['getchlib'],
+        packages=['getchlib','getchlib.keynames'],
         url='https://pypi.org/project/getchlib/',
         author_email='jenca.a@gjh.sk',
         classifiers=["Development Status :: 3 - Alpha",

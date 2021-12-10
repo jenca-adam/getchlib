@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: getchlib
-Version: 1.0.2
+Version: 1.0.9
 Summary: Library for reading key presses
 Home-page: https://pypi.org/project/getchlib/
 Author: Adam Jenca
@@ -14,6 +14,7 @@ Classifier: License :: OSI Approved :: GNU General Public License (GPL)
 Classifier: Operating System :: OS Independent
 Classifier: Programming Language :: Python :: 3
 Description-Content-Type: text/markdown
+License-File: LICENSE
 
 
 # getchlib - library for reading key presses
@@ -26,7 +27,7 @@ Description-Content-Type: text/markdown
 1. Cross-platform support
 1. Basic hotkeys ( `CTRL-V` or `ALT-A` ) are defined
 1. Not interruptable key press reading support ( cannot be interrupted by `CTRL-C`, returns key code instead )
-
+1. Keys as arrow up, arrow left, arrow down, arrow right are defined (for full list, view getchlib.keynames.raw)
 ### Installation
 ```
 pip install getchlib
@@ -50,6 +51,12 @@ Returns first key pressed in time specified by its second argument `tout` ( 0.01
 import getchlib
 key=getchlib.getkey(catch=True)
 ```
+#### Echo argument (new in v1.0.3)
+With `echo=True` characters readed are echoed to the screen.
+```python
+key=getchlib.getkey(echo=True)
+
+```
 ### Hotkeys
 ```python
 import getchlib
@@ -59,7 +66,6 @@ f=getchlib.HotKeyListener()
 f.add_hotkey('ctrl-x',function)
 f.start()
 ```
-***NOTE***:*f.start() runs on foreground*
 #### Not interruptable
 ```python
 import getchlib
