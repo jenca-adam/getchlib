@@ -1,23 +1,14 @@
-try:    
-    from .getkey import getkey
-except ImportError:
-    from getkey import  getkey
-try:
-    from .decorators import with_args
-except ImportError:
-    from decorators import with_args
 try:
     from . import term
-except ImportError:
-    try:
-        import term
-    except ImportError:
-        term=None
-try:
-    from .ctrl import CTRLIN
-except ImportError:
-    from ctrl import CTRLIN
+except:
+    term=None
+from .getkey import getkey
+from .decorators import with_args
+from .ctrl import CTRLIN
 import os
+def _bo():
+    if term is not None:
+        term.buffering.on()
 class HotKeyListener:
     def __init__(self,catch=False,blocking=True):
         self.hotkeys={}
@@ -33,7 +24,7 @@ class HotKeyListener:
                 key=getkey(False,tout=0.1,catch=self.catch)
             except:
                 break
-            term.buffering.on()
+            _bo()
             if hasattr(key,'char'):
                 key=key.char
             if key in self.hotkeys:
@@ -41,7 +32,7 @@ class HotKeyListener:
             if key=='\x03':
                 if not self.catch:
                     raise KeyboardInterrupt
-        term.buffering.on()
+        _bo()
 
     def add_hotkey(self,key,emit,*args,**kwargs):
         if not callable(emit):
@@ -61,10 +52,8 @@ class HotKeyListener:
         if not self.blocking:
             if os.fork():
                 self._start()
-        try:
-            self._start()
-        finally:
-            self.terminate()
-            if term:
-                term.buffering.on()
-
+        else:
+            try:
+                self._start()
+            finally:
+                _bo() 

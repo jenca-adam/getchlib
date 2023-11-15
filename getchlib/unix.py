@@ -4,14 +4,8 @@ import termios
 import os
 import time
 import fcntl
-try:
-    from . import term
-except ImportError:
-    import term
-try:
-    from .ctrl import *
-except ImportError:
-    from ctrl import *
+from .term import buffering,Buffering
+from .ctrl import *
 import sys
 class NoBufReader:
     def __init__(self,file):
@@ -86,12 +80,13 @@ def getkey(blocking=True,tout=0.1,catch=False,echo=False):
             char+='\x03'
 
     finally:
-        term.buffering.on()
+        flag = fcntl.fcntl(sys.stdin.fileno(), fcntl.F_GETFL)
+        fcntl.fcntl(sys.stdin.fileno(), fcntl.F_SETFL, flag & ~os.O_NONBLOCK) # remove the non-blocking flag (fix #1)
+        buffering.on()
 def buf(file,catch=False):
     fcntl.fcntl(file, fcntl.F_SETFL, os.O_NONBLOCK)
 
-    with term.Buffering(file):
-        res=''
+    with Buffering(file):
         while True:
             try:
                 a=file.read(1)

@@ -1,12 +1,10 @@
 Metadata-Version: 2.1
 Name: getchlib
-Version: 1.0.9
+Version: 1.0.13
 Summary: Library for reading key presses
 Home-page: https://pypi.org/project/getchlib/
 Author: Adam Jenca
 Author-email: jenca.a@gjh.sk
-License: UNKNOWN
-Platform: UNKNOWN
 Classifier: Development Status :: 3 - Alpha
 Classifier: Environment :: Console
 Classifier: Intended Audience :: Developers
@@ -27,7 +25,7 @@ License-File: LICENSE
 1. Cross-platform support
 1. Basic hotkeys ( `CTRL-V` or `ALT-A` ) are defined
 1. Not interruptable key press reading support ( cannot be interrupted by `CTRL-C`, returns key code instead )
-1. Keys as arrow up, arrow left, arrow down, arrow right are defined (for full list, view getchlib.keynames.raw)
+1. Keys like arrow up, arrow left, arrow down, arrow right are defined (for full list, view getchlib.keynames.raw)
 ### Installation
 ```
 pip install getchlib
@@ -77,5 +75,3 @@ f.start()
 ```
 ## License
 *`getchlib` is licensed under* ***GPL License***
-
-

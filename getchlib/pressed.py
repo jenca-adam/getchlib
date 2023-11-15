@@ -1,7 +1,4 @@
-try:
-    from .getkey import getkey
-except:
-    from getkey import getkey
+from .getkey import getkey
 import sys
 class module:
     def get_pressed(self):
