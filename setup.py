@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
                 name='getchlib',
-                version='1.0.13',
+                version='1.1.0',
                 description='Library for reading key presses',
                 long_description=
 '''

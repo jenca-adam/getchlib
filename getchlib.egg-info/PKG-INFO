@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: getchlib
-Version: 1.0.13
+Version: 1.1.0
 Summary: Library for reading key presses
 Home-page: https://pypi.org/project/getchlib/
 Author: Adam Jenca
