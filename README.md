@@ -41,7 +41,7 @@ f=getchlib.HotKeyListener()
 f.add_hotkey('ctrl-x',function)
 f.start()
 ```
-***NOTE***:*f.start() runs on foreground*
+***NOTE***:*f.start() runs in foreground*
 #### Not interruptable
 ```python
 import getchlib
