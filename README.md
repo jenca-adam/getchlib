@@ -51,5 +51,15 @@ f=getchlib.HotKeyListener(catch=True)
 f.add_hotkey('a',function)
 f.start()
 ```
+#### Non-blocking (linux only)
+```python
+import getchlib
+def function():
+	print('hello')
+f=getchlib.HotKeyListener(catch=True)
+f.add_hotkey('a',function)
+...
+f.terminate()
+```
 ## License
 *`getchlib` is licensed under* ***GPL License***

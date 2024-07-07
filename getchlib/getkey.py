@@ -1,9 +1,12 @@
 import platform
 import sys
-if platform.system()=='Windows':
+
+if platform.system() == "Windows":
     from . import windows
-    module=windows
+
+    module = windows
 else:
     from . import unix
-    module=unix
-sys.modules[__name__]=module
+
+    module = unix
+sys.modules[__name__] = module
