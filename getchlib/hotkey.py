@@ -15,11 +15,12 @@ class HotKeyListener:
         self.catch=catch
         self.__quit=False
         self.blocking=blocking
+        self._chpid=0
         if not blocking:
             if os.name!='posix':
                 raise SystemError('Non-blocking mode available only on Linux systems.')
-    def __blocking(self,destroy):
-        while not destroy():
+    def __blocking(self):
+        while True:
             try:
                 key=getkey(False,tout=0.1,catch=self.catch)
             except:
@@ -43,14 +44,15 @@ class HotKeyListener:
             key=CTRLIN[key.upper()]
         self.hotkeys[key]=with_args(*args,**kwargs)(emit)
     def _start(self):
-        self.__blocking(lambda:False) 
-    def join(self,*a):
-        self.__thread.join(*a)
+        self.__blocking() 
     def terminate(self):
-        self.__quit=True
+        if not self.blocking:
+            os.kill(self._chpid,15)
+            _bo()
     def start(self):
         if not self.blocking:
-            if os.fork():
+            self._chpid=os.fork()
+            if not self._chpid:
                 self._start()
         else:
             try:

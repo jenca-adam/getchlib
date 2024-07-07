@@ -18,14 +18,15 @@ class NoBufReader:
         return self.file.read(size)
 
     
-            
+def _to_string(byt):
+    return ''.join([chr(i) for i in byt])
 
 def _getkey(blocking=True,tout=0.1,catch=False,echo=False):
     key = ''
     with Buffering(sys.stdin):
         try:
             while True:
-                ev,_,_ = select.select([sys.stdin],[],[],tout)
+                ev,_,_ = select.select([sys.stdin],[],[],(tout if not blocking else 0))
                 if ev:
                     key=_readmax(sys.stdin)
                     break
@@ -38,7 +39,7 @@ def _getkey(blocking=True,tout=0.1,catch=False,echo=False):
             key+='\x03'
 
     if key.isprintable() and echo:
-        term.buffering.on()
+        buffering.on()
 
         print(key,end='',flush=True)
     return key
@@ -47,7 +48,6 @@ def getkey(blocking=True,tout=0.1,catch=False,echo=False):
     try:
         return parse_key(_getkey(blocking,tout,catch,echo))
     finally:
-        _addflag(sys.stdin,os.O_NONBLOCK, False) # remove the non-blocking flag (fix #1)
         buffering.on()
 
 def _addflag(fp, fl, add=True):
@@ -60,11 +60,12 @@ def _addflag(fp, fl, add=True):
     fcntl.fcntl(fn, fcntl.F_SETFL, nflag)
 
 def _readmax(fp):
-    _addflag(fp, os.O_NONBLOCK)
-    out = ''
-    for char in fp:
-        out+=char
-        if not char:
+    out = b''
+    while True:
+        ev,_,_ = select.select([fp],[],[],0)
+        if not ev:
             break
-    return out
+        out+=os.read(fp.fileno(),8)
+    return _to_string(out)
+
 
