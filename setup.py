@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
                 name='getchlib',
-                version='1.1.0',
+                version='1.1.1',
                 description='Library for reading key presses',
                 long_description=
 '''
@@ -63,6 +63,16 @@ def function():
 f=getchlib.HotKeyListener(catch=True)
 f.add_hotkey('a',function)
 f.start()
+```
+#### Non-blocking (linux only)
+```python
+import getchlib
+def function():
+	print('hello')
+f=getchlib.HotKeyListener(catch=True)
+f.add_hotkey('a',function)
+...
+f.terminate()
 ```
 ## License
 *`getchlib` is licensed under* ***GPL License***
