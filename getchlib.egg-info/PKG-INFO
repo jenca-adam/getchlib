@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: getchlib
-Version: 1.1.0
+Version: 1.1.1
 Summary: Library for reading key presses
 Home-page: https://pypi.org/project/getchlib/
 Author: Adam Jenca
@@ -72,6 +72,16 @@ def function():
 f=getchlib.HotKeyListener(catch=True)
 f.add_hotkey('a',function)
 f.start()
+```
+#### Non-blocking (linux only)
+```python
+import getchlib
+def function():
+	print('hello')
+f=getchlib.HotKeyListener(catch=True)
+f.add_hotkey('a',function)
+...
+f.terminate()
 ```
 ## License
 *`getchlib` is licensed under* ***GPL License***
