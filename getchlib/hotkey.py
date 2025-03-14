@@ -27,7 +27,7 @@ class HotKeyListener:
     def __blocking(self):
         while True:
             try:
-                key = getkey(False, tout=0.1, catch=self.catch)
+                key = getkey(False, tout=0, catch=self.catch)
             except:
                 break
             _bo()

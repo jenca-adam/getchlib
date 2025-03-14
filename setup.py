@@ -1,11 +1,10 @@
 import setuptools
 
 setuptools.setup(
-                name='getchlib',
-                version='1.1.1',
-                description='Library for reading key presses',
-                long_description=
-'''
+    name="getchlib",
+    version="1.1.2",
+    description="Library for reading key presses",
+    long_description="""
 # getchlib - library for reading key presses
 
 ## Overview
@@ -76,18 +75,18 @@ f.terminate()
 ```
 ## License
 *`getchlib` is licensed under* ***GPL License***
-''',
-        long_description_content_type='text/markdown',
-        author='Adam Jenca',
-        packages=['getchlib','getchlib.keynames'],
-        url='https://pypi.org/project/getchlib/',
-        author_email='jenca.a@gjh.sk',
-        classifiers=["Development Status :: 3 - Alpha",
-                     "Environment :: Console",
-                     "Intended Audience :: Developers",
-                     "License :: OSI Approved :: GNU General Public License (GPL)",
-                     "Operating System :: OS Independent",
-                     "Programming Language :: Python :: 3",
-                     ]
-    
+""",
+    long_description_content_type="text/markdown",
+    author="Adam Jenca",
+    packages=["getchlib", "getchlib.keynames"],
+    url="https://pypi.org/project/getchlib/",
+    author_email="jenca.a@gjh.sk",
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Environment :: Console",
+        "Intended Audience :: Developers",
+        "License :: OSI Approved :: GNU General Public License (GPL)",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+    ],
 )

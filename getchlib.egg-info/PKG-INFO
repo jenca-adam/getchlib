@@ -1,6 +1,6 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.2
 Name: getchlib
-Version: 1.1.1
+Version: 1.1.2
 Summary: Library for reading key presses
 Home-page: https://pypi.org/project/getchlib/
 Author: Adam Jenca
@@ -13,6 +13,13 @@ Classifier: Operating System :: OS Independent
 Classifier: Programming Language :: Python :: 3
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: summary
 
 
 # getchlib - library for reading key presses

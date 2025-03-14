@@ -21,10 +21,6 @@ class NoBufReader:
         return self.file.read(size)
 
 
-def _to_string(byt):
-    return "".join([chr(i) for i in byt])
-
-
 def _getkey(blocking=True, tout=0.1, catch=False, echo=False):
     key = ""
     with Buffering(sys.stdin):
@@ -75,4 +71,4 @@ def _readmax(fp):
         if not ev:
             break
         out += os.read(fp.fileno(), 8)
-    return _to_string(out)
+    return out.decode("utf-8")
