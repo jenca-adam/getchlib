@@ -27,7 +27,7 @@ def _getkey(blocking=True, tout=0.1, catch=False, echo=False):
         try:
             while True:
                 ev, _, _ = select.select(
-                    [sys.stdin], [], [], (tout if not blocking else 0)
+                    [sys.stdin], [], [], (tout if not blocking else None)
                 )
                 if ev:
                     key = _readmax(sys.stdin)
