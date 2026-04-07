@@ -43,6 +43,8 @@ For backwards compatibility, it subclasses `str` - this means that you likely wo
 It has the following attributes:
 - `code: str`: the raw key code outputted by the terminal
 - `key: getchlib.Key | str`: a member of the `getchlib.Key` enum if it's a special key, a string otherwise.
-- `modifiers: {getchlib.KeyboardModifier}`: a set of one of `getchlib.KeyboardModifier.SHIFT`, `getchlib.KeyboardModifier.CTRL`, `getchlib.KeyboardModifier.ALT`, `getchlib.KeyboardModifier.META`
+- `modifiers: set[getchlib.KeyboardModifier]`: a set of one of `getchlib.KeyboardModifier.SHIFT`, `getchlib.KeyboardModifier.CTRL`, `getchlib.KeyboardModifier.ALT`, `getchlib.KeyboardModifier.META`
+## Windows Disclaimer
+The Windows version of this package has only been tested on Wine. Bugs are possible.
 ## License
 *`getchlib` is licensed under* the ***GPL License***
