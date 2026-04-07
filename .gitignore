@@ -1,4 +1,6 @@
 .test*
-*/__pycache__/*
+*__pycache__*
 build/*
 build
+.mypy_cache
+*egg-info*
